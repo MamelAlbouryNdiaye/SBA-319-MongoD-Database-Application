@@ -1,9 +1,23 @@
 import express from 'express'
 import Course from "../models/course.mjs"
+import {courses} from "../data/data.mjs"
 const router = express.Router()
 
+router.get("/seed", async (req, res) => {
+  try {
+    await Course.deleteMany({});
+    await Course.insertMany(courses);
 
+    res.send("Courses seeded successfully!");
+  } catch (err) {
+    console.error(" Seed error:", err);
+    res.status(500).send("Error seeding courses");
+  }
+});
 
+router.get("/", (req, res) => {
+    res.redirect('/courses')
+})
 router.get('/about', (req, res)=> {
    res.render('about', {title : 'About'});
 });
