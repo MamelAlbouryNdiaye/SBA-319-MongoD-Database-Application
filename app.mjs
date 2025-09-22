@@ -4,8 +4,7 @@ import connectDB from './db/connection.mjs'
 import globalErr from './middlewares/globalErr.mjs'
 import log from './middlewares/loginMiddleware.mjs'
 import couresRoutes from './routes/courseRoutes.mjs'
-import ejs from 'ejs'
-import Course from './models/course.mjs'
+
 
 
 // setup 

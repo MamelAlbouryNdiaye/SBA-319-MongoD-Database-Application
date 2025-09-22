@@ -3,22 +3,6 @@ import Course from "../models/course.mjs"
 const router = express.Router()
 
 
-// Create
-router.
-    route("/").
-      post(async (req, res)=>{
-        try{
-            // Perform Action
-            let newCourse = await Course.create(req.body);
-
-            // Return Response
-             res.redirect('/courses');
-
-        }catch(err){
-            console.error(err.message);
-            res.status.apply(500).json({msg : `Error - ${err.message}`});
-        }
-    })
 
 router.get('/about', (req, res)=> {
    res.render('about', {title : 'About'});
@@ -35,15 +19,22 @@ router.get('/courses', (req, res) => {
       })
 })
 
-router.post('/courses', (req, res) => {
+router.post('/courses', async (req, res) => {
+  try {
+    const exists = await Course.findOne({ title: req.body.title })
+    if (exists) {
+      return res.status(400).send("Course already exists")
+    }
+
     const course = new Course(req.body)
-    course.save().then((result) => {
-        res.redirect('/courses')
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+    await course.save()
+    res.redirect('/courses')
+  } catch (err) {
+    console.log(err)
+    res.status(500).send("Error creating course")
+  }
 })
+
 
 router.get('/courses/create', (req,res)=>{
     res.render('create', {title : 'New course'});
