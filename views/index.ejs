@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html  lang ="en">
+
+    <%- include('./partials/head.ejs')  %>
+    
+<body>
+
+    <%- include('./partials/nav.ejs') %>
+   
+
+   <div class="courses content">
+      <h2>  All courses </h2>
+      <% if (courses.length > 0){ %>
+        <% courses.forEach(course => { %>
+
+            <h3 class = "title"><%= course.title %></h3>
+            <p class = "snippet"><%= course.snippet %></p>
+
+        <% }) %>
+
+      <% } %>
+   </div>
+   
+   <%- include('./partials/footer.ejs')  %>
+
+</body>
+</html>
