@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import connectDB from './db/connection.mjs'
 import globalErr from './middlewares/globalErr.mjs'
 import log from './middlewares/loginMiddleware.mjs'
+import couresRoutes from './routes/courseRoutes.mjs'
 import ejs from 'ejs'
 import Course from './models/course.mjs'
 
@@ -23,6 +24,10 @@ app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(log)
+app.use(express.static('public'));
+
+//routes
+app.use('/', couresRoutes)
 
 // Err Handling middleware
 app.use(globalErr)
