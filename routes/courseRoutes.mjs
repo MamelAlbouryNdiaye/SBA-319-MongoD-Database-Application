@@ -1,7 +1,14 @@
 import express from 'express'
 import Course from "../models/course.mjs"
 import {courses} from "../data/data.mjs"
+import User from "../models/user.mjs"
 const router = express.Router()
+
+
+// GET all users
+router.get("/", async (req, res) => {
+  res.json(await User.find());
+});
 
 router.get("/seed", async (req, res) => {
   try {
