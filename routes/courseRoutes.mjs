@@ -10,6 +10,16 @@ router.get("/", async (req, res) => {
   res.json(await User.find());
 });
 
+// POST create new user
+router.post("/", async (req, res) => {
+  try {
+    const user = await User.create(req.body);
+    res.status(201).json(user);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 router.get("/seed", async (req, res) => {
   try {
     await Course.deleteMany({});
