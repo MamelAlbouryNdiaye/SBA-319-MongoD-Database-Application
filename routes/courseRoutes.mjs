@@ -70,4 +70,10 @@ router.patch("/courses/:id", async (req, res) => {
   }
 });
 
+// DELETE course
+router.delete("/courses/:id", async (req, res) => {
+  await Course.findByIdAndDelete(req.params.id);
+  res.send("Course deleted");
+});
+
 export default router;
