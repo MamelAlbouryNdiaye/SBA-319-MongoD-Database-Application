@@ -30,6 +30,12 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+// DELETE user
+router.delete("/:id", async (req, res) => {
+  await User.findByIdAndDelete(req.params.id);
+  res.send("User deleted");
+});
+
 router.get("/seed", async (req, res) => {
   try {
     await Course.deleteMany({});
