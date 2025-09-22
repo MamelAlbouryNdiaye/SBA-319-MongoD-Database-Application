@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import connectDB from './db/connection.mjs'
 import globalErr from './middlewares/globalErr.mjs'
 import log from './middlewares/loginMiddleware.mjs'
+import ejs from 'ejs'
+import Course from './models/course.mjs'
 
 
 // setup 
@@ -14,6 +16,8 @@ const port = process.env.PORT || 3225
 //db connection
 connectDB();
 
+// regsiter view engine
+app.set('view engine', 'ejs')
 
 //Middlewares
 app.use(express.json())
