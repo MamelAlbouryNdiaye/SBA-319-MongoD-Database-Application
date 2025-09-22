@@ -20,6 +20,16 @@ router.post("/", async (req, res) => {
   }
 });
 
+// PATCH update user role
+router.patch("/:id", async (req, res) => {
+  try {
+    const updated = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    res.json(updated);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 router.get("/seed", async (req, res) => {
   try {
     await Course.deleteMany({});
