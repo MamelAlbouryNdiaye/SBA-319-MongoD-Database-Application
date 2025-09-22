@@ -60,5 +60,14 @@ router.use((req, res) => {
     res.status(404).render('404', {title : '404'});
 });
 
+// PATCH update course
+router.patch("/courses/:id", async (req, res) => {
+  try {
+    const updated = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    res.json(updated);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
 
 export default router;
