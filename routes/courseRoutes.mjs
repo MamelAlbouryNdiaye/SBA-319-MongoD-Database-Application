@@ -4,7 +4,6 @@ import {courses} from "../data/data.mjs"
 const router = express.Router()
 
 
-
 router.get("/seed", async (req, res) => {
   try {
     await Course.deleteMany({});

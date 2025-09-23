@@ -1,6 +1,7 @@
 
 import express from "express"
 import User from "../models/user.mjs"
+const router = express.Router()
 
 // GET all users
 router.get("/", async (req, res) => {
@@ -20,7 +21,12 @@ router.post("/", async (req, res) => {
 // PATCH update user role
 router.patch("/:id", async (req, res) => {
   try {
-    const updated = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const updated = await User.findByIdAndUpdate(
+        req.params.id, 
+        req.body, { 
+            new: true, 
+            runValidators: true 
+        });
     res.json(updated);
   } catch (err) {
     res.status(400).json({ error: err.message });
