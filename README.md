@@ -28,3 +28,4 @@ It exposes a RESTful API (GET/POST/PATCH/DELETE), includes simple server-side re
 
 ![http://localhost:3250/courses](./images/course1.png)
 ![http://localhost:3250/Courses/create](./images/course2.png)
+![Database](./images/course3.png)
